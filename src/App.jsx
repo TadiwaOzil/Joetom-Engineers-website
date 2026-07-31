@@ -62,7 +62,7 @@ export default function App() {
     { 
       title: "Project Management", 
       desc: "Professional site oversight, timeline tracking, material auditing, and quality control.",
-      img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=800&q=80"
+      img: "/images/project management.png"
     },
     { 
       title: "Structural Assessments", 
@@ -297,7 +297,7 @@ export default function App() {
       category: "Power, Solar & Processing",
       desc: "Custom structural steel fabrication including elevated tank stands, security gates, warehouse trusses, and site trailers.",
       specs: ["Precision MIG & Arc Welding", "Custom Engineering Blueprints", "Anti-Corrosion Primer & Paint Coating"],
-      img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=800&q=80"
+      img: "images/metal fabrication.png"
     }
   ];
 
