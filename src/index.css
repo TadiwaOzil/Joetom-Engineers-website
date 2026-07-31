@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nagDark: #0a0f1d;
+  --color-nagCard: #111827;
+  --color-nagSidebarTop: #1e3a8a;
+  --color-nagSidebarMid: #0284c7;
+  --color-nagSidebarBot: #0ea5e9;
+  --color-nagAccentBlue: #3b82f6;
+  --color-nagGold: #d97706;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--color-nagDark);
+  color: #f3f4f6;
+}
