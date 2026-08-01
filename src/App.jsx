@@ -12,7 +12,27 @@ import {
   FaDraftingCompass,
   FaBuilding,
   FaIndustry,
-  FaWater
+  FaWater,
+  FaShieldAlt,
+  FaAward,
+  FaClock,
+  FaPaperPlane,
+  FaChevronLeft,
+  FaChevronRight,
+  FaChevronDown,
+  FaChevronUp,
+  FaCalculator,
+  FaQuestionCircle,
+  FaTasks,
+  FaWrench,
+  FaMountain,
+  FaRoute,
+  FaFilter,
+  FaLayerGroup,
+  FaSun,
+  FaTruck,
+  FaBolt,
+  FaShoppingCart
 } from 'react-icons/fa';
 
 export default function App() {
@@ -29,7 +49,37 @@ export default function App() {
 
   const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
 
-  // Auto-slide every 5 seconds
+  // Home Machinery Carousel State
+  const [currentFleetIdx, setCurrentFleetIdx] = useState(0);
+
+  // Home Quote Form State
+  const [quoteForm, setQuoteForm] = useState({
+    name: '',
+    service: 'Construction and Civil works',
+    details: ''
+  });
+
+  // Construction Estimator Widget State
+  const [estimator, setEstimator] = useState({
+    projectType: 'Building Construction',
+    scale: 'Medium (Domestic / Light Commercial)',
+    notes: ''
+  });
+
+  // Hardware Order Builder State
+  const [hardwareOrder, setHardwareOrder] = useState({
+    category: 'Roofing & Structural Timber',
+    item: 'IBR Roofing Sheets',
+    quantity: '10 Sheets / Units',
+    notes: ''
+  });
+
+  // FAQ Accordion Open States
+  const [openFaq, setOpenFaq] = useState(null);
+  const [openBoreholeFaq, setOpenBoreholeFaq] = useState(null);
+  const [openHardwareFaq, setOpenHardwareFaq] = useState(null);
+
+  // Auto-slide hero every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
@@ -37,7 +87,7 @@ export default function App() {
     return () => clearInterval(timer);
   }, [heroImages.length]);
 
-  // Construction Services Data (Updated with image paths and icons for each card)
+  // Construction Services Data (Exact local image paths preserved)
   const constructionServices = [
     { 
       title: "Building Construction", 
@@ -130,6 +180,43 @@ export default function App() {
     }
   ];
 
+  // Earthmovers Fleet Spec Comparison Table Data
+  const fleetTableSpecs = [
+    { name: "HOWO Tipper Trucks (10-Wheeler)", capacity: "20m³ / 30-Ton Load", application: "Aggregate, Sand & Soil Haulage", drive: "6x4 Heavy Chassis", status: "Ready for Deployment" },
+    { name: "Tracked Excavators & Dozers", capacity: "30-Ton Operating Weight", application: "Bulk Earthworks & Deep Trenching", drive: "High-Traction Crawler", status: "Ready for Deployment" },
+    { name: "Mobile Hydraulic Cranes", capacity: "25 to 50 Ton Boom Capacity", application: "Structural Steel & Concrete Rigging", drive: "All-Terrain Mobile Base", status: "Ready for Deployment" },
+    { name: "Articulated Dump Trucks", capacity: "35-Ton Volumetric Payloads", application: "Mining, Quarry & Off-Road Haulage", drive: "6x6 Off-Road All-Terrain", status: "Ready for Deployment" },
+    { name: "CASE 570 Backhoe Loader", capacity: "4x4 Multi-Use Dig & Load", application: "Trenching, Site Prep & Farming", drive: "Available / For Sale" }
+  ];
+
+  // Earthmovers Specialized Applications Data
+  const plantApplications = [
+    {
+      title: "Mining & Quarry Haulage",
+      desc: "Heavy volumetric payload dumpers and tippers engineered to transport raw aggregates, rock, and overburden over rough mining terrain.",
+      icon: <FaMountain className="text-amber-400 text-2xl" />,
+      img: "/images/dump trucks1.png"
+    },
+    {
+      title: "Road Sub-Grade & Civil Digging",
+      desc: "Heavy excavators and backhoes for sub-grade levelling, trench excavation for sewer lines, and civil road base clearing.",
+      icon: <FaRoute className="text-sky-400 text-2xl" />,
+      img: "images/Heavy Tracked Excavators & Dozers.png"
+    },
+    {
+      title: "Structural Rigging & Crane Works",
+      desc: "Precision mobile hydraulic crane hire complete with certified rigging crews for placing heavy steel trusses and pre-cast concrete.",
+      icon: <FaIndustry className="text-cyan-400 text-2xl" />,
+      img: "images/hyrolic cranes.png"
+    },
+    {
+      title: "Bulk Material Site Delivery",
+      desc: "High-tonnage HOWO tipper fleet providing fast supply trips of gravel, crushed stones, pit sand, and topsoil directly to development sites.",
+      icon: <FaTruckMonster className="text-emerald-400 text-2xl" />,
+      img: "/images/howo-tippers.jpg"
+    }
+  ];
+
   // Borehole Drilling Services Data (Exact local image paths preserved)
   const boreholeServices = [
     { 
@@ -161,6 +248,79 @@ export default function App() {
       title: "Storage Tank & Tower Setup", 
       desc: "5,000L – 10,000L JoJo water tank installation on heavy steel elevated tank stands.",
       img: "images/storage pumps2.png"
+    }
+  ];
+
+  // Borehole Drilling Visual Process Steps Data
+  const drillingSteps = [
+    {
+      step: "01",
+      title: "Hydro-Geological Siting",
+      desc: "VES geophysical survey mapping underground aquifers to determine optimum depth & eliminate dry holes.",
+      img: "images/geological surveying and siting.png"
+    },
+    {
+      step: "02",
+      title: "Air Rotary Percussion Drilling",
+      desc: "Heavy rotary drill rig penetrates topsoil, weathered overburden, and deep granite rock beds.",
+      img: "images/deep rig drilling.png"
+    },
+    {
+      step: "03",
+      title: "Casing & Gravel Packing",
+      desc: "Inserting food-grade PVC/Steel casing with graded silica gravel to seal clean water & block sand sediment.",
+      img: "images/borehole casing and screening.png"
+    },
+    {
+      step: "04",
+      title: "Yield & Drawdown Test",
+      desc: "Continuous 4 to 8-hour pumping test to measure precise Liters-per-Hour flow capacity and recovery rate.",
+      img: "images/capacity and yield testing.png"
+    },
+    {
+      step: "05",
+      title: "Solar Pump & Tank Commissioning",
+      desc: "Installing solar submersible pump, automatic level control switches, elevated JoJo tank, and sanitary apron.",
+      img: "images/submersible pump installation.png"
+    }
+  ];
+
+  // Water Filtration & Quality Treatment Items Data
+  const filtrationSystems = [
+    {
+      title: "Sediment & Iron Filtration",
+      desc: "Multi-stage particle filters removing rust, brown iron discoloration, and suspended clay sediment for crystal clear water.",
+      img: "images/storage pumps2.png"
+    },
+    {
+      title: "UV Sterilization & Purification",
+      desc: "Ultraviolet disinfection units destroying 99.9% of bacteria and microorganisms, delivering pure drinking water.",
+      img: "images/submersible pump installation.png"
+    },
+    {
+      title: "Water Softening & Mineral Balancing",
+      desc: "Ion-exchange resin softeners preventing limescale buildup in domestic geysers, piping, and industrial boilers.",
+      img: "images/borehole casing and screening.png"
+    }
+  ];
+
+  // Borehole FAQs Data
+  const boreholeFaqs = [
+    {
+      q: "What happens if a hydro-geological survey indicates low water potential on my property?",
+      a: "Our hydrogeologists assess multiple survey points across your plot boundaries to pinpoint the deepest fracture zone, maximizing your chances of hitting a high-yield aquifer before any drilling starts."
+    },
+    {
+      q: "How deep do Joetom rigs usually drill to reach water?",
+      a: "Typical borehole depths range between 40 to 100 meters depending on the local water table and granite geology. Our air-rotary rigs are capable of reaching depths well beyond 150 meters."
+    },
+    {
+      q: "Do solar-powered submersible pumps work effectively on overcast days?",
+      a: "Yes. We install high-efficiency MPPT (Maximum Power Point Tracking) solar pump controllers that optimize low-light voltage, ensuring steady daytime water pumping even during cloudy weather."
+    },
+    {
+      q: "What is included in a complete turnkey borehole installation package?",
+      a: "Our complete package covers geological siting, drilling, high-grade PVC casing, gravel pack, 4-hour yield test, submersible pump, solar panel array/structure, elevated JoJo tank stand, and sanitary concrete pad."
     }
   ];
 
@@ -301,6 +461,92 @@ export default function App() {
     }
   ];
 
+  // Solar System Packages Data
+  const solarPackages = [
+    {
+      title: "3kVA Lite Domestic System",
+      target: "Residential & Small Office",
+      specs: ["3.2kVA Hybrid Smart Inverter", "2.5kWh LiFePO4 Lithium Battery", "4x 550W Tier-1 PERC Solar Panels", "Powers Lights, TV, Wi-Fi & Fridges"],
+      tag: "Popular Home Choice",
+      color: "border-sky-500/40 text-sky-400"
+    },
+    {
+      title: "5kVA Heavy Domestic & Borehole Package",
+      target: "Homes + Submersible Water Pumps",
+      specs: ["5.5kVA High-Efficiency Inverter", "5.1kWh Long-Life Lithium Storage", "8x 550W Mono Solar Panels", "Runs House Load + 1HP Borehole Pump"],
+      tag: "Borehole Ready",
+      color: "border-amber-500/40 text-amber-400"
+    },
+    {
+      title: "10kVA Commercial & Farm Solar Grid",
+      target: "Farms, Processing Mills & Lodges",
+      specs: ["10kVA Three-Phase Hybrid Inverter", "10.2kWh Heavy Lithium Battery Bank", "16x 550W Tier-1 Solar Array", "Powers Heavy Pumps, Processing & Commercial Load"],
+      tag: "Commercial Heavy",
+      color: "border-emerald-500/40 text-emerald-400"
+    }
+  ];
+
+  // Hardware FAQs Data
+  const hardwareFaqs = [
+    {
+      q: "Do you cut IBR chromadek roofing sheets to custom length measurements?",
+      a: "Yes! We provide precision custom factory cutting for both chromadek and galvanized IBR sheets to match your exact structural roof span, reducing material waste on site."
+    },
+    {
+      q: "What warranty comes with your solar panels and lithium battery systems?",
+      a: "All our monocrystalline Tier-1 solar panels come with a 25-year linear performance warranty. Our LiFePO4 lithium batteries and hybrid smart inverters carry a full 5-year replacement warranty."
+    },
+    {
+      q: "Can Joetom deliver heavy bulk materials directly to out-of-town project sites?",
+      a: "Absolutely. Leveraging our fleet of HOWO tippers and heavy haulage trucks, we deliver bulk timber, roofing sheets, cement, and solar hardware directly to your site location nationwide."
+    },
+    {
+      q: "Are your structural timber trusses treated against termite infestation?",
+      a: "Yes. All our structural timber battens and roof trusses undergo full CCA pressure treatment, ensuring lifetime resistance against wood rot, termites, and weather exposure."
+    }
+  ];
+
+  // Construction FAQs Data
+  const constructionFaqs = [
+    {
+      q: "Do you handle local council approvals and engineering sign-offs?",
+      a: "Yes. Our registered civil engineers and architects handle all blueprint submissions, structural calculations, and council sign-offs prior to groundbreak."
+    },
+    {
+      q: "What paving options do you offer for heavy commercial truck yards?",
+      a: "We install heavy-duty 80mm interlocking concrete paving blocks with reinforced sub-base compaction, engineered specifically to withstand heavy haulage trucks and machinery without cracking."
+    },
+    {
+      q: "Do you provide structural integrity guarantees on new builds?",
+      a: "Absolutely. All Joetom structural builds are executed under strict civil engineering oversight with written warranties covering foundation and load-bearing integrity."
+    },
+    {
+      q: "Can Joetom supply both the construction machinery and raw materials?",
+      a: "Yes! Because we own our fleet of earthmovers and operate a structural hardware division, we provide end-to-end service, reducing your reliance on third-party suppliers."
+    }
+  ];
+
+  // Helper for WhatsApp Home Quote Submission
+  const handleQuoteSubmit = (e) => {
+    e.preventDefault();
+    const message = `Hello Joetom Engineers, I would like to request a quote.\n\n*Name:* ${quoteForm.name}\n*Service Required:* ${quoteForm.service}\n*Details:* ${quoteForm.details}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  // Helper for WhatsApp Construction Estimator Submission
+  const handleEstimatorSubmit = (e) => {
+    e.preventDefault();
+    const message = `Hello Joetom Engineers, I am requesting a site inspection and quote estimate.\n\n*Project Category:* ${estimator.projectType}\n*Estimated Scope:* ${estimator.scale}\n*Notes:* ${estimator.notes || 'N/A'}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  // Helper for WhatsApp Hardware Order Submission
+  const handleHardwareOrderSubmit = (e) => {
+    e.preventDefault();
+    const message = `Hello Joetom Hardware Division, I would like to request a price quotation for materials.\n\n*Category:* ${hardwareOrder.category}\n*Product Item:* ${hardwareOrder.item}\n*Estimated Quantity:* ${hardwareOrder.quantity}\n*Notes / Delivery Site:* ${hardwareOrder.notes || 'N/A'}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-nagDark text-gray-100 flex flex-col font-sans">
       
@@ -330,7 +576,7 @@ export default function App() {
               onClick={() => setActiveTab('construction')}
               className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'construction' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
             >
-              <FaHardHat /> Construction
+              <FaHardHat /> Construction and Civil works
             </button>
             <button 
               onClick={() => setActiveTab('earthmovers')}
@@ -340,13 +586,13 @@ export default function App() {
             </button>
             <button 
               onClick={() => setActiveTab('borehole')}
-              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'borehole' ? 'bg-sky-500 text-white shadow-lg border border-sky-200/50' : 'hover:bg-white/10 text-sky-100'}`}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'borehole' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
             >
               <FaWater /> Borehole Drilling
             </button>
             <button 
               onClick={() => setActiveTab('hardware')}
-              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'hardware' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'hardware' ? 'bg-sky-500 text-white shadow-lg border border-sky-200/50' : 'hover:bg-white/10 text-sky-100'}`}
             >
               <FaTools /> Hardware
             </button>
@@ -360,93 +606,112 @@ export default function App() {
         
         {/* ==================== HOME TAB ==================== */}
         {activeTab === 'home' && (
-          <div className="space-y-12">
+          <div className="space-y-16">
             
             {/* Animated Hero Banner with Fading Background Images */}
-<section className="relative rounded-3xl overflow-hidden shadow-2xl border border-sky-900/50 min-h-[440px] flex flex-col justify-center">
-  
-  {/* Background Slideshow Images */}
-  <div className="absolute inset-0 z-0 bg-slate-950">
-    {heroImages.map((imgSrc, idx) => (
-      <div
-        key={idx}
-        className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-          idx === currentHeroIdx 
-            ? 'opacity-85 scale-105 duration-[5000ms]' 
-            : 'opacity-0 scale-100 duration-1000'
-        }`}
-      >
-        <img 
-          src={imgSrc} 
-          alt={`Hero Slide ${idx + 1}`} 
-          className="w-full h-full object-cover"
-        />
-      </div>
-    ))}
-    
-    {/* Balanced Dark Gradient: Deep dark left for text, transparent right for clear imagery */}
-    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-slate-950/20 z-10"></div>
-    {/* Vignette overlay to ground top & bottom edges */}
-    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/30 z-10"></div>
-  </div>
+            <section className="relative rounded-3xl overflow-hidden shadow-2xl border border-sky-900/50 min-h-[440px] flex flex-col justify-center">
+              
+              {/* Background Slideshow Images */}
+              <div className="absolute inset-0 z-0 bg-slate-950">
+                {heroImages.map((imgSrc, idx) => (
+                  <div
+                    key={idx}
+                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                      idx === currentHeroIdx 
+                        ? 'opacity-85 scale-105 duration-[5000ms]' 
+                        : 'opacity-0 scale-100 duration-1000'
+                    }`}
+                  >
+                    <img 
+                      src={imgSrc} 
+                      alt={`Hero Slide ${idx + 1}`} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+                
+                {/* Balanced Dark Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-slate-950/20 z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/30 z-10"></div>
+              </div>
 
-  {/* Hero Banner Text Content */}
-  <div className="relative z-20 p-8 sm:p-12 md:p-16 max-w-3xl">
-    <span className="bg-sky-500/30 text-sky-200 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-sky-400/40 uppercase tracking-widest backdrop-blur-md shadow-sm">
-      One-Stop Engineering & Materials Hub
-    </span>
-    <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-4 leading-tight drop-shadow-lg">
-      Precision Engineering, Earthmoving & Borehole Drilling
-    </h2>
-    <p className="text-gray-200 text-base sm:text-lg mb-8 leading-relaxed drop-shadow-md max-w-2xl">
-      Delivering premier architectural designs, heavy equipment plant hire, borehole siting & drilling, and structural supplies under one roof.
-    </p>
+              {/* Hero Banner Text Content */}
+              <div className="relative z-20 p-8 sm:p-12 md:p-16 max-w-3xl">
+                <span className="bg-sky-500/30 text-sky-200 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-sky-400/40 uppercase tracking-widest backdrop-blur-md shadow-sm">
+                  One-Stop Engineering & Materials Hub
+                </span>
+                <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-4 leading-tight drop-shadow-lg">
+                  Precision Engineering, Earthmoving & Borehole Drilling
+                </h2>
+                <p className="text-gray-200 text-base sm:text-lg mb-8 leading-relaxed drop-shadow-md max-w-2xl">
+                  Delivering premier architectural designs, heavy equipment plant hire, borehole siting & drilling, and structural supplies under one roof.
+                </p>
 
-    <div className="flex flex-wrap gap-4">
-      <button 
-        onClick={() => setActiveTab('construction')} 
-        className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
-      >
-        <FaHardHat /> Construction & Paving
-      </button>
-      <button 
-        onClick={() => setActiveTab('earthmovers')} 
-        className="bg-nagGold hover:bg-amber-600 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
-      >
-        <FaTractor /> Cranes & Excavators
-      </button>
-      <button 
-        onClick={() => setActiveTab('borehole')} 
-        className="bg-sky-600 hover:bg-sky-500 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
-      >
-        <FaWater /> Borehole Drilling
-      </button>
-      <button 
-        onClick={() => setActiveTab('hardware')} 
-        className="bg-slate-900/90 hover:bg-slate-800 text-sky-300 border border-sky-500/40 font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base backdrop-blur-md hover:scale-105 active:scale-95"
-      >
-        <FaTools /> Hardware Supplies
-      </button>
-    </div>
-  </div>
+                <div className="flex flex-wrap gap-4">
+                  <button 
+                    onClick={() => setActiveTab('construction')} 
+                    className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
+                  >
+                    <FaHardHat /> Construction and Civil works
+                  </button>
+                  <button 
+                    onClick={() => setActiveTab('earthmovers')} 
+                    className="bg-nagGold hover:bg-amber-600 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
+                  >
+                    <FaTractor /> Cranes & Excavators
+                  </button>
+                  <button 
+                    onClick={() => setActiveTab('borehole')} 
+                    className="bg-sky-600 hover:bg-sky-500 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
+                  >
+                    <FaWater /> Borehole Drilling
+                  </button>
+                  <button 
+                    onClick={() => setActiveTab('hardware')} 
+                    className="bg-slate-900/90 hover:bg-slate-800 text-sky-300 border border-sky-500/40 font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base backdrop-blur-md hover:scale-105 active:scale-95"
+                  >
+                    <FaTools /> Hardware Supplies
+                  </button>
+                </div>
+              </div>
 
-  {/* Slide Indicator Dots */}
-  <div className="absolute bottom-4 left-0 right-0 z-30 flex justify-center items-center gap-2">
-    {heroImages.map((_, idx) => (
-      <button
-        key={idx}
-        onClick={() => setCurrentHeroIdx(idx)}
-        className={`h-2.5 rounded-full transition-all duration-300 ${
-          idx === currentHeroIdx 
-            ? 'w-8 bg-amber-500 shadow-md ring-2 ring-amber-400/30' 
-            : 'w-2.5 bg-white/40 hover:bg-white/70 backdrop-blur-sm'
-        }`}
-        aria-label={`Go to slide ${idx + 1}`}
-      />
-    ))}
-  </div>
+              {/* Slide Indicator Dots */}
+              <div className="absolute bottom-4 left-0 right-0 z-30 flex justify-center items-center gap-2">
+                {heroImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentHeroIdx(idx)}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                      idx === currentHeroIdx 
+                        ? 'w-8 bg-amber-500 shadow-md ring-2 ring-amber-400/30' 
+                        : 'w-2.5 bg-white/40 hover:bg-white/70 backdrop-blur-sm'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
 
-</section>
+            </section>
+
+            {/* Stats & Impact Counters */}
+            <section className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+              <div className="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl text-center shadow-lg hover:border-sky-500/40 transition">
+                <span className="text-3xl sm:text-4xl font-black text-sky-400 block mb-1">15+</span>
+                <span className="text-xs sm:text-sm text-gray-300 font-semibold">Years Experience</span>
+              </div>
+              <div className="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl text-center shadow-lg hover:border-amber-500/40 transition">
+                <span className="text-3xl sm:text-4xl font-black text-amber-400 block mb-1">250+</span>
+                <span className="text-xs sm:text-sm text-gray-300 font-semibold">Projects Completed</span>
+              </div>
+              <div className="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl text-center shadow-lg hover:border-cyan-500/40 transition">
+                <span className="text-3xl sm:text-4xl font-black text-cyan-400 block mb-1">50+</span>
+                <span className="text-xs sm:text-sm text-gray-300 font-semibold">Heavy Machinery Units</span>
+              </div>
+              <div className="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl text-center shadow-lg hover:border-emerald-500/40 transition">
+                <span className="text-3xl sm:text-4xl font-black text-emerald-400 block mb-1">100%</span>
+                <span className="text-xs sm:text-sm text-gray-300 font-semibold">Safety & Quality Rating</span>
+              </div>
+            </section>
 
             {/* Division Visual Showcase */}
             <section className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -464,11 +729,11 @@ export default function App() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                   <span className="absolute bottom-3 left-4 bg-sky-600 text-white text-xs font-bold px-2.5 py-1 rounded">
-                    Building & Paving
+                    Civil & Building
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition">Construction & Paving</h3>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition">Construction and Civil works</h3>
                   <p className="text-gray-400 text-xs mb-4">Building construction, driveway paving, bridge works, structural engineering, and drainage systems.</p>
                   <span className="text-sky-400 font-semibold text-xs flex items-center gap-1">Explore Services →</span>
                 </div>
@@ -544,17 +809,131 @@ export default function App() {
               </div>
 
             </section>
+
+            {/* Why Choose Joetom */}
+            <section className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  Our Engineering Advantage
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Why Choose Joetom Engineers?</h3>
+                <p className="text-sm text-gray-400 mt-2">We combine heavy-duty machinery, technical engineering expertise, and direct material supply to lower project costs.</p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-xl mb-4 border border-sky-500/30">
+                    <FaTractor />
+                  </div>
+                  <h4 className="font-bold text-white text-lg mb-2">Heavy Plant Fleet</h4>
+                  <p className="text-xs text-gray-400 leading-relaxed">Modern excavators, cranes, dump trucks, and tippers available for immediate site deployment.</p>
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/30">
+                    <FaHardHat />
+                  </div>
+                  <h4 className="font-bold text-white text-lg mb-2">Certified Engineers</h4>
+                  <p className="text-xs text-gray-400 leading-relaxed">Licensed civil engineers and hydrogeologists ensuring strict structural standards and site safety.</p>
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl mb-4 border border-cyan-500/30">
+                    <FaWater />
+                  </div>
+                  <h4 className="font-bold text-white text-lg mb-2">End-to-End Solutions</h4>
+                  <p className="text-xs text-gray-400 leading-relaxed">From geological water siting to complete structural construction and bulk material procurement.</p>
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4 border border-emerald-500/30">
+                    <FaClock />
+                  </div>
+                  <h4 className="font-bold text-white text-lg mb-2">On-Time Execution</h4>
+                  <p className="text-xs text-gray-400 leading-relaxed">Rigorous timeline tracking and material auditing to deliver projects on schedule and within budget.</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Interactive Quick Quote / Inquiry CTA Section */}
+            <section className="bg-gradient-to-r from-blue-950 via-slate-900 to-sky-950 border border-sky-500/40 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="grid md:grid-cols-12 gap-8 items-center">
+                <div className="md:col-span-6">
+                  <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                    Quick Consultation
+                  </span>
+                  <h3 className="text-2xl sm:text-4xl font-black text-white mt-4 mb-4">Request a Project Quotation</h3>
+                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                    Tell us what you need—whether it’s heavy equipment hire, borehole drilling, civil construction, or structural hardware supplies.
+                  </p>
+                  <div className="flex items-center gap-3 text-sky-300 font-semibold text-sm">
+                    <FaPhoneAlt /> Immediate Call Assistance: 077 615 6749
+                  </div>
+                </div>
+
+                <div className="md:col-span-6 bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl">
+                  <form onSubmit={handleQuoteSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Your Name / Company</label>
+                      <input 
+                        type="text" 
+                        required
+                        placeholder="e.g. John Doe" 
+                        value={quoteForm.name}
+                        onChange={(e) => setQuoteForm({...quoteForm, name: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Service Required</label>
+                      <select 
+                        value={quoteForm.service}
+                        onChange={(e) => setQuoteForm({...quoteForm, service: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      >
+                        <option value="Construction and Civil works">Construction and Civil works</option>
+                        <option value="Earthmovers & Heavy Plant Hire">Earthmovers & Plant Hire</option>
+                        <option value="Borehole Drilling & Solar Pumps">Borehole Drilling & Water Systems</option>
+                        <option value="Hardware & Structural Supplies">Hardware & Bulk Materials</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Project Details / Scope</label>
+                      <textarea 
+                        rows="3" 
+                        placeholder="Provide details like site location or project scope..." 
+                        value={quoteForm.details}
+                        onChange={(e) => setQuoteForm({...quoteForm, details: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      ></textarea>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <FaPaperPlane /> Send Quote Request via WhatsApp
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </section>
+
           </div>
         )}
 
-        {/* ==================== CONSTRUCTION TAB ==================== */}
+        {/* ==================== CONSTRUCTION AND CIVIL WORKS TAB ==================== */}
         {activeTab === 'construction' && (
-          <div className="space-y-10">
+          <div className="space-y-16">
+            
+            {/* Header */}
             <div className="border-b border-gray-800 pb-4">
               <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
-                <FaHardHat className="text-sky-400" /> Building, Paving & Civil Engineering Division
+                <FaHardHat className="text-sky-400" /> Construction and Civil Works Division
               </h2>
-              <p className="text-gray-400 mt-1">Specialized building construction, heavy-duty paving, and civil infrastructure delivery.</p>
+              <p className="text-gray-400 mt-1">Specialized building construction, heavy-duty paving, bridge construction, and civil infrastructure delivery.</p>
             </div>
 
             {/* Featured Visual Grid */}
@@ -584,7 +963,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Service Directory Grid (Updated with Card Images & Direct Contacts) */}
+            {/* Service Directory Grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {constructionServices.map((service, idx) => (
                 <div 
@@ -632,12 +1011,215 @@ export default function App() {
                 </div>
               ))}
             </div>
+
+            {/* Construction Process & Workflow Timeline */}
+            <section className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  End-to-End Execution
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Our Civil Project Workflow</h3>
+                <p className="text-sm text-gray-400 mt-2">How Joetom Engineers takes your project from structural concept to certified completion.</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+                <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between relative group hover:border-sky-500/50 transition">
+                  <div>
+                    <span className="w-8 h-8 rounded-full bg-sky-600 text-white font-extrabold flex items-center justify-center text-sm mb-3">1</span>
+                    <h4 className="font-bold text-white text-base mb-2">Site Assessment & Blueprints</h4>
+                    <p className="text-xs text-gray-400 leading-relaxed">Architectural drafting, soil testing, structural calculations, and council sign-offs.</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between relative group hover:border-sky-500/50 transition">
+                  <div>
+                    <span className="w-8 h-8 rounded-full bg-sky-600 text-white font-extrabold flex items-center justify-center text-sm mb-3">2</span>
+                    <h4 className="font-bold text-white text-base mb-2">Groundworks & Sub-Structure</h4>
+                    <p className="text-xs text-gray-400 leading-relaxed">Bulk excavation, sub-base preparation, steel rebar reinforcement, and concrete footings.</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between relative group hover:border-sky-500/50 transition">
+                  <div>
+                    <span className="w-8 h-8 rounded-full bg-sky-600 text-white font-extrabold flex items-center justify-center text-sm mb-3">3</span>
+                    <h4 className="font-bold text-white text-base mb-2">Superstructure Masonry</h4>
+                    <p className="text-xs text-gray-400 leading-relaxed">Heavy load-bearing brickwork, structural columns, lintels, and drainage reticulation.</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between relative group hover:border-sky-500/50 transition">
+                  <div>
+                    <span className="w-8 h-8 rounded-full bg-sky-600 text-white font-extrabold flex items-center justify-center text-sm mb-3">4</span>
+                    <h4 className="font-bold text-white text-base mb-2">Roofing & Paving</h4>
+                    <p className="text-xs text-gray-400 leading-relaxed">CCA-treated timber trusses, chromadek roofing sheets, and heavy-duty driveway paving.</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between relative group hover:border-sky-500/50 transition">
+                  <div>
+                    <span className="w-8 h-8 rounded-full bg-emerald-600 text-white font-extrabold flex items-center justify-center text-sm mb-3">5</span>
+                    <h4 className="font-bold text-white text-base mb-2">Audit & Handover</h4>
+                    <p className="text-xs text-gray-400 leading-relaxed">Final engineering safety inspection, structural certification, and client handover.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Equipment & Materials Badges */}
+            <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-8 shadow-xl">
+              <div className="text-center mb-8">
+                <span className="text-xs font-bold uppercase tracking-widest text-sky-400">Quality Assured</span>
+                <h3 className="text-2xl font-black text-white mt-1">Certified Machinery & Materials We Deploy</h3>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <FaTractor className="text-2xl text-amber-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h5 className="font-bold text-white text-sm">Heavy Plant Fleet</h5>
+                    <p className="text-xs text-gray-400 mt-0.5">Hydraulic excavators & heavy rollers for site compaction.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <FaShieldAlt className="text-2xl text-sky-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h5 className="font-bold text-white text-sm">SABS Structural Steel</h5>
+                    <p className="text-xs text-gray-400 mt-0.5">High-tensile rebar steel and high-load cement mixtures.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <FaDraftingCompass className="text-2xl text-cyan-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h5 className="font-bold text-white text-sm">Laser Site Leveling</h5>
+                    <p className="text-xs text-gray-400 mt-0.5">Optical & laser surveying instruments for precision gradient paving.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <FaBuilding className="text-2xl text-emerald-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h5 className="font-bold text-white text-sm">Industrial Concrete Mixers</h5>
+                    <p className="text-xs text-gray-400 mt-0.5">High-output mixers and pokers for void-free concrete pours.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Interactive Construction Budget/Scope Estimator Widget */}
+            <section className="bg-gradient-to-r from-blue-950 via-slate-900 to-sky-950 border border-sky-500/40 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="grid md:grid-cols-12 gap-8 items-center">
+                <div className="md:col-span-5">
+                  <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                    Quick Estimator
+                  </span>
+                  <h3 className="text-2xl sm:text-4xl font-black text-white mt-4 mb-4">Request a Civil Scope Estimate</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                    Select your project category and scale to request an immediate technical estimate and site visit schedule from our engineering team.
+                  </p>
+                  <div className="flex items-center gap-3 text-sky-300 font-semibold text-sm">
+                    <FaCalculator className="text-lg" /> Instant WhatsApp Estimate Dispatch
+                  </div>
+                </div>
+
+                <div className="md:col-span-7 bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl">
+                  <form onSubmit={handleEstimatorSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Project Category</label>
+                      <select 
+                        value={estimator.projectType}
+                        onChange={(e) => setEstimator({...estimator, projectType: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      >
+                        <option value="Building Construction">Building Construction (Foundation to Finish)</option>
+                        <option value="Driveway & Commercial Paving">Driveway & Commercial Paving</option>
+                        <option value="Road Design & Surfacing">Road Design & Surfacing</option>
+                        <option value="Bridge & Civil Infrastructure">Bridge & Civil Infrastructure</option>
+                        <option value="Sewer & Water Reticulation">Sewer & Water Reticulation</option>
+                        <option value="Architectural & Structural Plans">Architectural & Structural Plans</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Project Scope & Scale</label>
+                      <select 
+                        value={estimator.scale}
+                        onChange={(e) => setEstimator({...estimator, scale: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      >
+                        <option value="Small (Residential / Private Driveway)">Small (Residential / Private Driveway)</option>
+                        <option value="Medium (Domestic / Light Commercial)">Medium (Domestic / Light Commercial)</option>
+                        <option value="Large Commercial / Industrial Complex">Large Commercial / Industrial Complex</option>
+                        <option value="Major Civil Infrastructure / Government Work">Major Civil Infrastructure Works</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Additional Notes / Dimensions (Optional)</label>
+                      <textarea 
+                        rows="2" 
+                        placeholder="e.g. 500 sqm commercial block paving in industrial area..." 
+                        value={estimator.notes}
+                        onChange={(e) => setEstimator({...estimator, notes: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      ></textarea>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <FaWhatsapp className="text-lg" /> Send Scope Details via WhatsApp
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </section>
+
+            {/* Frequently Asked Questions Accordion */}
+            <section className="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  Frequently Asked Questions
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Civil Construction & Paving FAQs</h3>
+              </div>
+
+              <div className="max-w-3xl mx-auto space-y-4">
+                {constructionFaqs.map((faq, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-md transition"
+                  >
+                    <button
+                      onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                      className="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:text-sky-400 transition"
+                    >
+                      <span className="flex items-center gap-3">
+                        <FaQuestionCircle className="text-sky-400 text-lg flex-shrink-0" />
+                        {faq.q}
+                      </span>
+                      {openFaq === idx ? <FaChevronUp className="text-sky-400" /> : <FaChevronDown className="text-gray-400" />}
+                    </button>
+                    {openFaq === idx && (
+                      <div className="px-5 pb-5 pt-0 text-xs sm:text-sm text-gray-300 border-t border-slate-800/80 mt-2 pt-3 leading-relaxed">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+
           </div>
         )}
 
         {/* ==================== EARTHMOVERS TAB ==================== */}
         {activeTab === 'earthmovers' && (
-          <div className="space-y-10">
+          <div className="space-y-16">
+            
+            {/* Header */}
             <div className="border-b border-gray-800 pb-4">
               <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
                 <FaTractor className="text-nagGold" /> Earthmovers, Cranes, Dump Trucks & Fleet
@@ -685,12 +1267,128 @@ export default function App() {
                 </div>
               ))}
             </div>
+
+            {/* Specialized Industrial Applications Showcase */}
+            <section className="bg-slate-900/70 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-400/30 uppercase tracking-widest">
+                  Site Operations
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Specialized Plant Applications</h3>
+                <p className="text-sm text-gray-400 mt-2">Where and how our heavy machinery fleet delivers maximum performance.</p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {plantApplications.map((app, idx) => (
+                  <div key={idx} className="bg-slate-950 border border-slate-800/80 rounded-2xl overflow-hidden shadow-lg hover:border-amber-500/50 transition flex flex-col justify-between group">
+                    <div>
+                      <div className="h-40 overflow-hidden relative">
+                        <img 
+                          src={app.img} 
+                          alt={app.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div className="absolute bottom-3 left-3 bg-slate-900/90 p-2 rounded-xl backdrop-blur-sm shadow border border-slate-700">
+                          {app.icon}
+                        </div>
+                      </div>
+                      <div className="p-5">
+                        <h4 className="font-bold text-white text-base mb-2 group-hover:text-amber-400 transition">{app.title}</h4>
+                        <p className="text-xs text-gray-400 leading-relaxed">{app.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Fleet Specifications & Capabilities Comparison Table */}
+            <section className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl overflow-hidden">
+              <div className="mb-6">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  Technical Specifications
+                </span>
+                <h3 className="text-2xl font-black text-white mt-3">Fleet Capacity & Capabilities Matrix</h3>
+                <p className="text-xs sm:text-sm text-gray-400 mt-1">Detailed operating capacities and terrain drive ratings for site planning.</p>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-sm text-gray-300">
+                  <thead className="bg-slate-950 text-xs uppercase tracking-wider text-sky-400 border-b border-slate-800">
+                    <tr>
+                      <th className="py-4 px-4 font-bold">Machinery Unit</th>
+                      <th className="py-4 px-4 font-bold">Operating Capacity</th>
+                      <th className="py-4 px-4 font-bold">Primary Application</th>
+                      <th className="py-4 px-4 font-bold">Drive & Spec</th>
+                      <th className="py-4 px-4 font-bold">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/80 bg-slate-900/40">
+                    {fleetTableSpecs.map((row, idx) => (
+                      <tr key={idx} className="hover:bg-slate-800/40 transition">
+                        <td className="py-3.5 px-4 font-bold text-white flex items-center gap-2">
+                          <FaTractor className="text-amber-400 flex-shrink-0" /> {row.name}
+                        </td>
+                        <td className="py-3.5 px-4 text-xs sm:text-sm text-gray-200">{row.capacity}</td>
+                        <td className="py-3.5 px-4 text-xs text-gray-300">{row.application}</td>
+                        <td className="py-3.5 px-4 text-xs text-sky-300 font-mono">{row.drive}</td>
+                        <td className="py-3.5 px-4">
+                          <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs px-2.5 py-1 rounded-full font-semibold">
+                            {row.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            {/* Equipment Safety & Maintenance Standard Badges */}
+            <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-amber-500/30 rounded-3xl p-8 sm:p-10 shadow-2xl">
+              <div className="text-center max-w-xl mx-auto mb-8">
+                <span className="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-400/30 uppercase tracking-widest">
+                  Zero Downtime Guarantee
+                </span>
+                <h3 className="text-2xl font-black text-white mt-3">Machinery Safety & Maintenance Standards</h3>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaWrench className="text-2xl text-amber-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Pre-Deployment Servicing</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Full hydraulic pressure testing and mechanical inspection before every deployment.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaAward className="text-2xl text-sky-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Certified Operators</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Safety-trained heavy equipment operators provided with every machine hire contract.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaClock className="text-2xl text-emerald-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Rapid Site Mobile Backup</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">On-site technical support crew ready to ensure uninterrupted site work.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaShieldAlt className="text-2xl text-cyan-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Rugged Terrain Certified</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Reinforced heavy chassis and 6x6 / 4x4 options built for harsh mining & mud terrain.</p>
+                </div>
+              </div>
+            </section>
+
           </div>
         )}
 
         {/* ==================== BOREHOLE DRILLING TAB ==================== */}
         {activeTab === 'borehole' && (
-          <div className="space-y-10">
+          <div className="space-y-16">
+            
+            {/* Header */}
             <div className="border-b border-gray-800 pb-4">
               <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
                 <FaWater className="text-sky-400" /> Borehole Drilling & Water Systems
@@ -740,7 +1438,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Service Grid with Images */}
+            {/* Core Service Grid with Images */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {boreholeServices.map((service, idx) => (
                 <div 
@@ -772,12 +1470,123 @@ export default function App() {
                 </div>
               ))}
             </div>
+
+            {/* Deep Rotary Drilling Geological Layers Breakdown */}
+            <section className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  Technical Step-By-Step
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Our Drilling & Execution Process</h3>
+                <p className="text-sm text-gray-400 mt-2">How Joetom Hydrogeologists & Engineers secure sustainable underground water aquifers.</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                {drillingSteps.map((step, idx) => (
+                  <div key={idx} className="bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-md hover:border-sky-500/50 transition flex flex-col justify-between group">
+                    <div>
+                      <div className="h-32 overflow-hidden relative">
+                        <img 
+                          src={step.img} 
+                          alt={step.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <span className="absolute top-2 left-3 bg-sky-600 text-white font-extrabold text-xs px-2.5 py-1 rounded-md shadow">
+                          Step {step.step}
+                        </span>
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-bold text-white text-sm mb-1.5 group-hover:text-sky-400 transition">{step.title}</h4>
+                        <p className="text-xs text-gray-400 leading-relaxed">{step.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Water Filtration & Quality Treatment Showcase */}
+            <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-cyan-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-cyan-500/20 text-cyan-300 text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/30 uppercase tracking-widest">
+                  Water Purity & Health
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Filtration & Purification Solutions</h3>
+                <p className="text-sm text-gray-400 mt-2">Ensuring raw borehole groundwater is 100% safe, sediment-free, and healthy for domestic consumption.</p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {filtrationSystems.map((system, idx) => (
+                  <div key={idx} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:border-cyan-500/40 transition flex flex-col justify-between group">
+                    <div>
+                      <div className="h-44 overflow-hidden relative">
+                        <img 
+                          src={system.img} 
+                          alt={system.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent"></div>
+                        <div className="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-cyan-600/90 text-white flex items-center justify-center text-lg shadow">
+                          <FaFilter />
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h4 className="font-bold text-white text-lg mb-2 group-hover:text-cyan-400 transition">{system.title}</h4>
+                        <p className="text-xs text-gray-400 leading-relaxed">{system.desc}</p>
+                      </div>
+                    </div>
+                    <div className="p-6 pt-0">
+                      <a href="https://wa.me/" className="w-full bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 text-xs font-semibold py-2.5 rounded-xl flex items-center justify-center gap-2 transition">
+                        <FaWhatsapp className="text-base" /> Inquire Filtration Setup
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Borehole Drilling Frequently Asked Questions Accordion */}
+            <section className="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  Water Drilling Guide
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Borehole Drilling FAQs</h3>
+              </div>
+
+              <div className="max-w-3xl mx-auto space-y-4">
+                {boreholeFaqs.map((faq, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-md transition"
+                  >
+                    <button
+                      onClick={() => setOpenBoreholeFaq(openBoreholeFaq === idx ? null : idx)}
+                      className="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:text-sky-400 transition"
+                    >
+                      <span className="flex items-center gap-3">
+                        <FaQuestionCircle className="text-sky-400 text-lg flex-shrink-0" />
+                        {faq.q}
+                      </span>
+                      {openBoreholeFaq === idx ? <FaChevronUp className="text-sky-400" /> : <FaChevronDown className="text-gray-400" />}
+                    </button>
+                    {openBoreholeFaq === idx && (
+                      <div className="px-5 pb-5 pt-0 text-xs sm:text-sm text-gray-300 border-t border-slate-800/80 mt-2 pt-3 leading-relaxed">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+
           </div>
         )}
 
         {/* ==================== HARDWARE TAB ==================== */}
         {activeTab === 'hardware' && (
-          <div className="space-y-14">
+          <div className="space-y-16">
             
             {/* Header */}
             <div className="border-b border-gray-800 pb-4">
@@ -828,6 +1637,44 @@ export default function App() {
                 ))}
               </div>
             </div>
+
+            {/* NEW FEATURE 3: Solar Power System Sizing & Package Options */}
+            <section className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-400/30 uppercase tracking-widest">
+                  Turnkey Solar Solutions
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Solar Power & Battery Packages</h3>
+                <p className="text-sm text-gray-400 mt-2">Engineered monocrystalline PERC solar panels and long-life lithium storage kits.</p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {solarPackages.map((pkg, idx) => (
+                  <div key={idx} className={`bg-slate-950 border ${pkg.color} rounded-2xl p-6 shadow-xl flex flex-col justify-between relative group hover:scale-[1.02] transition`}>
+                    <div>
+                      <span className="bg-slate-900 border border-slate-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider block w-max mb-4">
+                        {pkg.tag}
+                      </span>
+                      <h4 className="text-xl font-black text-white mb-1">{pkg.title}</h4>
+                      <p className="text-xs text-gray-400 mb-6">{pkg.target}</p>
+
+                      <div className="space-y-2.5 mb-6 pt-4 border-t border-slate-800">
+                        {pkg.specs.map((spec, sIdx) => (
+                          <div key={sIdx} className="flex items-center gap-2 text-xs text-gray-300">
+                            <FaBolt className="text-amber-400 flex-shrink-0 text-xs" />
+                            <span>{spec}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <a href="https://wa.me/" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow transition">
+                      <FaWhatsapp className="text-base" /> Inquire Solar Package
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             {/* SECTION 2: Detailed Hardware Items Array */}
             <div className="pt-6 border-t border-gray-800/80">
@@ -896,18 +1743,156 @@ export default function App() {
               </div>
             </div>
 
-            {/* Direct Contact Banner */}
-            <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-slate-900 border border-sky-500/30 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-              <div>
-                <h4 className="text-2xl font-bold text-white mb-1">Need a detailed site quotation?</h4>
-                <p className="text-sm text-gray-400">Get bulk pricing on roofing sheets, solar systems, borehole drilling, or earthmoving haulage.</p>
+            {/* NEW FEATURE 1: Materials & Equipment Price Request / Order Builder Widget */}
+            <section className="bg-gradient-to-r from-blue-950 via-slate-900 to-sky-950 border border-sky-500/40 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="grid md:grid-cols-12 gap-8 items-center">
+                <div className="md:col-span-5">
+                  <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                    Direct Order Builder
+                  </span>
+                  <h3 className="text-2xl sm:text-4xl font-black text-white mt-4 mb-4">Request Bulk Material Quotation</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                    Select your structural hardware, roofing, or solar equipment requirements and send a custom quantity quote request directly to our supply department.
+                  </p>
+                  <div className="flex items-center gap-3 text-sky-300 font-semibold text-sm">
+                    <FaShoppingCart className="text-lg" /> Instant WhatsApp Order Dispatch
+                  </div>
+                </div>
+
+                <div className="md:col-span-7 bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl">
+                  <form onSubmit={handleHardwareOrderSubmit} className="space-y-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-300 mb-1">Supply Category</label>
+                        <select 
+                          value={hardwareOrder.category}
+                          onChange={(e) => setHardwareOrder({...hardwareOrder, category: e.target.value})}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                        >
+                          <option value="Roofing & Structural Timber">Roofing & Structural Timber</option>
+                          <option value="Ceiling & Drywall Materials">Ceiling & Drywall Materials</option>
+                          <option value="Solar & Electrical Power Systems">Solar & Electrical Power Systems</option>
+                          <option value="Agricultural Mills & Fabrication">Agricultural Mills & Fabrication</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-300 mb-1">Product Item</label>
+                        <input 
+                          type="text" 
+                          required
+                          placeholder="e.g. IBR Chromadek Sheets / PERC Panels" 
+                          value={hardwareOrder.item}
+                          onChange={(e) => setHardwareOrder({...hardwareOrder, item: e.target.value})}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Estimated Quantity / Dimensions</label>
+                      <input 
+                        type="text" 
+                        required
+                        placeholder="e.g. 50 Sheets of 6-meter IBR / 5kVA Solar System" 
+                        value={hardwareOrder.quantity}
+                        onChange={(e) => setHardwareOrder({...hardwareOrder, quantity: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Delivery Site Location / Notes</label>
+                      <textarea 
+                        rows="2" 
+                        placeholder="Provide site delivery destination or special requirements..." 
+                        value={hardwareOrder.notes}
+                        onChange={(e) => setHardwareOrder({...hardwareOrder, notes: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
+                      ></textarea>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <FaWhatsapp className="text-lg" /> Dispatch Quotation Request via WhatsApp
+                    </button>
+                  </form>
+                </div>
               </div>
-              <div className="flex gap-4">
-                <a href="tel:0776156749" className="bg-sky-600 hover:bg-sky-500 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg transition">
-                  <FaPhoneAlt /> 077 615 6749
-                </a>
+            </section>
+
+            {/* NEW FEATURE 4: Bulk Delivery & Logistics Services Showcase */}
+            <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl">
+              <div className="text-center max-w-xl mx-auto mb-8">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  Direct Site Logistics
+                </span>
+                <h3 className="text-2xl font-black text-white mt-3">Bulk Material Logistics & Delivery Fleet</h3>
               </div>
-            </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaTruck className="text-2xl text-sky-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Heavy Haulage Delivery</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Direct site delivery of timber, IBR sheets, and grinding mills nationwide.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaShieldAlt className="text-2xl text-amber-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Transit Protection</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Padded glass protection for Tier-1 solar panels and fragile gypsum drywall boards.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaTools className="text-2xl text-emerald-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Custom Steel Fabrication</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Tailor-made elevated tank stands, security gates, and warehouse structural frames.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaAward className="text-2xl text-cyan-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">CCA Treated Timber</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Pressure-treated structural trusses certified against termites and weather damage.</p>
+                </div>
+              </div>
+            </section>
+
+            {/* NEW FEATURE 5: Hardware & Supply FAQs Accordion */}
+            <section className="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
+                  Hardware & Supply Guide
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Material Supply FAQs</h3>
+              </div>
+
+              <div className="max-w-3xl mx-auto space-y-4">
+                {hardwareFaqs.map((faq, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-md transition"
+                  >
+                    <button
+                      onClick={() => setOpenHardwareFaq(openHardwareFaq === idx ? null : idx)}
+                      className="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:text-sky-400 transition"
+                    >
+                      <span className="flex items-center gap-3">
+                        <FaQuestionCircle className="text-sky-400 text-lg flex-shrink-0" />
+                        {faq.q}
+                      </span>
+                      {openHardwareFaq === idx ? <FaChevronUp className="text-sky-400" /> : <FaChevronDown className="text-gray-400" />}
+                    </button>
+                    {openHardwareFaq === idx && (
+                      <div className="px-5 pb-5 pt-0 text-xs sm:text-sm text-gray-300 border-t border-slate-800/80 mt-2 pt-3 leading-relaxed">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
 
           </div>
         )}
