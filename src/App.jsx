@@ -641,10 +641,10 @@ export default function App() {
     <div className="min-h-screen bg-nagDark text-gray-100 flex flex-col font-sans">
       
       {/* Navigation Header */}
-      <header className="bg-gradient-to-b from-blue-900 via-blue-700 to-sky-600 text-white shadow-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+      <header className="bg-gradient-to-b from-blue-900 via-blue-700 to-sky-600 text-white shadow-xl sticky top-0 z-50 w-full">
+        <div className="w-full px-4 sm:px-8 py-3 flex flex-col lg:flex-row justify-between items-center gap-4">
           
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('home')}>
+          <div className="flex items-center space-x-3 cursor-pointer shrink-0" onClick={() => setActiveTab('home')}>
             <div className="bg-white text-blue-950 font-black text-xl px-3 py-1 rounded-lg shadow-md tracking-wider uppercase">
               REACH
             </div>
@@ -655,28 +655,28 @@ export default function App() {
           </div>
 
           {/* Navigation Controls */}
-          <nav className="flex items-center space-x-1 sm:space-x-2 mt-3 sm:mt-0 flex-wrap">
+          <nav className="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-center lg:justify-end w-full lg:w-auto">
             <button 
               onClick={() => setActiveTab('home')}
-              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'home' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'home' ? 'bg-sky-500 text-white shadow-lg border border-sky-200/50' : 'hover:bg-white/10 text-sky-100'}`}
             >
               <FaHome /> Home
             </button>
             <button 
               onClick={() => setActiveTab('construction')}
-              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'construction' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'construction' ? 'bg-sky-500 text-white shadow-lg border border-sky-200/50' : 'hover:bg-white/10 text-sky-100'}`}
             >
               <FaHardHat /> Construction & Civil
             </button>
             <button 
               onClick={() => setActiveTab('earthmovers')}
-              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'earthmovers' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'earthmovers' ? 'bg-sky-500 text-white shadow-lg border border-sky-200/50' : 'hover:bg-white/10 text-sky-100'}`}
             >
               <FaTractor /> Earthmovers
             </button>
             <button 
               onClick={() => setActiveTab('borehole')}
-              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'borehole' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'borehole' ? 'bg-sky-500 text-white shadow-lg border border-sky-200/50' : 'hover:bg-white/10 text-sky-100'}`}
             >
               <FaWater /> Borehole Drilling
             </button>
