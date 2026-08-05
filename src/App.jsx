@@ -32,7 +32,13 @@ import {
   FaSun,
   FaTruck,
   FaBolt,
-  FaShoppingCart
+  FaShoppingCart,
+  FaCode,
+  FaLaptopCode,
+  FaMobileAlt,
+  FaDatabase,
+  FaServer,
+  FaCloud
 } from 'react-icons/fa';
 
 export default function App() {
@@ -74,10 +80,18 @@ export default function App() {
     notes: ''
   });
 
+  // Systems Development Estimator State
+  const [softwareEstimator, setSoftwareEstimator] = useState({
+    type: 'Custom Enterprise Web Application',
+    platform: 'Cross-Platform Mobile & Web',
+    notes: ''
+  });
+
   // FAQ Accordion Open States
   const [openFaq, setOpenFaq] = useState(null);
   const [openBoreholeFaq, setOpenBoreholeFaq] = useState(null);
   const [openHardwareFaq, setOpenHardwareFaq] = useState(null);
+  const [openSoftwareFaq, setOpenSoftwareFaq] = useState(null);
 
   // Auto-slide hero every 5 seconds
   useEffect(() => {
@@ -324,6 +338,75 @@ export default function App() {
     }
   ];
 
+  // Software & Systems Development Services Data
+  const systemServices = [
+    {
+      title: "Enterprise Web Applications",
+      desc: "Custom web platforms tailored for industrial operations, inventory management, and client portals.",
+      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+      icon: <FaLaptopCode />
+    },
+    {
+      title: "Mobile App Development",
+      desc: "High-performance iOS and Android cross-platform mobile applications for field crews and client engagement.",
+      img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
+      icon: <FaMobileAlt />
+    },
+    {
+      title: "Cloud & Database Architecture",
+      desc: "Scalable relational & NoSQL databases with secure automated cloud hosting and backup routines.",
+      img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
+      icon: <FaDatabase />
+    },
+    {
+      title: "Custom ERP & POS Software",
+      desc: "Integrated Enterprise Resource Planning, point-of-sale systems, stock tracking, and billing software.",
+      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      icon: <FaServer />
+    },
+    {
+      title: "RESTful & GraphQL API Integration",
+      desc: "Building secure API gateways to connect payment services, SMS alerts, and internal hardware.",
+      img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+      icon: <FaCode />
+    },
+    {
+      title: "Cloud Migration & Maintenance",
+      desc: "Upgrading legacy software environments, managing Vercel/AWS hosting, and providing 24/7 technical support.",
+      img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+      icon: <FaCloud />
+    }
+  ];
+
+  // Software Engineering Workflow Steps Data
+  const systemWorkflow = [
+    { step: "01", title: "Requirement Analysis", desc: "Detailed technical mapping of client business logic, user roles, and database schemas." },
+    { step: "02", title: "Architecture & Wireframing", desc: "Designing responsive UI/UX mockups, API route blueprints, and cloud data structures." },
+    { step: "03", title: "Full-Stack Agile Coding", desc: "Iterative sprint development using React, Node.js, Python, or SQLite/PostgreSQL." },
+    { step: "04", title: "Testing & Security Audit", desc: "Rigorous quality assurance, end-to-end security audits, and cross-browser testing." },
+    { step: "05", title: "Cloud Deployment & Support", desc: "Automated Git/Vercel continuous integration, server setup, and ongoing updates." }
+  ];
+
+  // System Development FAQs Data
+  const systemFaqs = [
+    {
+      q: "What tech stack do Joetom software engineers specialize in?",
+      a: "We specialize in modern JavaScript frameworks (React, Node.js, Express), Python/Django backend systems, SQLite/PostgreSQL databases, and mobile cross-platform platforms."
+    },
+    {
+      q: "Can you build custom internal software for managing hardware inventory and machinery hire?",
+      a: "Yes! We build tailored ERP systems, fleet dispatch logbooks, material quote builders, and custom dashboards specific to industrial and commercial business needs."
+    },
+    {
+      q: "Where will my application be hosted and managed?",
+      a: "We deploy applications on production-ready cloud environments like Vercel, AWS, or DigitalOcean with automated SSL security certificates and GitHub CI/CD integration."
+    },
+    {
+      q: "Do you offer post-launch maintenance and technical updates?",
+      a: "Absolutely. We provide continuous system maintenance, database backups, performance audits, and new feature additions to ensure zero software downtime."
+    }
+  ];
+
   // Hardware Summary Categories Data (Exact local image paths preserved)
   const hardwareSupplies = [
     {
@@ -547,6 +630,13 @@ export default function App() {
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
+  // Helper for WhatsApp Systems Development Submission
+  const handleSoftwareOrderSubmit = (e) => {
+    e.preventDefault();
+    const message = `Hello Joetom Systems Development Team, I would like to inquire about software engineering services.\n\n*System Type:* ${softwareEstimator.type}\n*Target Platform:* ${softwareEstimator.platform}\n*Project Specifications:* ${softwareEstimator.notes || 'N/A'}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-nagDark text-gray-100 flex flex-col font-sans">
       
@@ -560,7 +650,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-xl font-extrabold uppercase tracking-wider leading-none">Joetom Engineers</h1>
-              <p className="text-xs text-sky-200 italic mt-0.5">Building Excellence & Plant Hire</p>
+              <p className="text-xs text-sky-200 italic mt-0.5">Building Excellence & Systems</p>
             </div>
           </div>
 
@@ -576,7 +666,7 @@ export default function App() {
               onClick={() => setActiveTab('construction')}
               className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'construction' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
             >
-              <FaHardHat /> Construction and Civil works
+              <FaHardHat /> Construction & Civil
             </button>
             <button 
               onClick={() => setActiveTab('earthmovers')}
@@ -589,6 +679,12 @@ export default function App() {
               className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'borehole' ? 'bg-nagAccentBlue text-white shadow-lg border border-sky-300/30' : 'hover:bg-white/10 text-sky-100'}`}
             >
               <FaWater /> Borehole Drilling
+            </button>
+            <button 
+              onClick={() => setActiveTab('systems')}
+              className={`px-3 py-2 rounded-lg font-medium text-sm transition flex items-center gap-1.5 ${activeTab === 'systems' ? 'bg-sky-500 text-white shadow-lg border border-sky-200/50' : 'hover:bg-white/10 text-sky-100'}`}
+            >
+              <FaCode /> Systems Development
             </button>
             <button 
               onClick={() => setActiveTab('hardware')}
@@ -638,13 +734,13 @@ export default function App() {
               {/* Hero Banner Text Content */}
               <div className="relative z-20 p-8 sm:p-12 md:p-16 max-w-3xl">
                 <span className="bg-sky-500/30 text-sky-200 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-sky-400/40 uppercase tracking-widest backdrop-blur-md shadow-sm">
-                  One-Stop Engineering & Materials Hub
+                  Engineering, Software & Logistics Hub
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-4 leading-tight drop-shadow-lg">
-                  Precision Engineering, Earthmoving & Borehole Drilling
+                  Precision Engineering, Earthmoving, Water & Digital Systems
                 </h2>
                 <p className="text-gray-200 text-base sm:text-lg mb-8 leading-relaxed drop-shadow-md max-w-2xl">
-                  Delivering premier architectural designs, heavy equipment plant hire, borehole siting & drilling, and structural supplies under one roof.
+                  Delivering architectural designs, heavy equipment plant hire, borehole siting & drilling, system development, and structural supplies under one roof.
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -652,19 +748,25 @@ export default function App() {
                     onClick={() => setActiveTab('construction')} 
                     className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
                   >
-                    <FaHardHat /> Construction and Civil works
+                    <FaHardHat /> Civil Construction
                   </button>
                   <button 
                     onClick={() => setActiveTab('earthmovers')} 
                     className="bg-nagGold hover:bg-amber-600 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
                   >
-                    <FaTractor /> Cranes & Excavators
+                    <FaTractor /> Cranes & Earthmovers
                   </button>
                   <button 
                     onClick={() => setActiveTab('borehole')} 
                     className="bg-sky-600 hover:bg-sky-500 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
                   >
                     <FaWater /> Borehole Drilling
+                  </button>
+                  <button 
+                    onClick={() => setActiveTab('systems')} 
+                    className="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm sm:text-base hover:scale-105 active:scale-95"
+                  >
+                    <FaCode /> Systems Development
                   </button>
                   <button 
                     onClick={() => setActiveTab('hardware')} 
@@ -714,7 +816,7 @@ export default function App() {
             </section>
 
             {/* Division Visual Showcase */}
-            <section className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <section className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
               
               {/* Construction Card */}
               <div 
@@ -733,8 +835,8 @@ export default function App() {
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition">Construction and Civil works</h3>
-                  <p className="text-gray-400 text-xs mb-4">Building construction, driveway paving, bridge works, structural engineering, and drainage systems.</p>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition">Construction & Civil</h3>
+                  <p className="text-gray-400 text-xs mb-4">Building construction, driveway paving, bridge works, and structural engineering.</p>
                   <span className="text-sky-400 font-semibold text-xs flex items-center gap-1">Explore Services →</span>
                 </div>
               </div>
@@ -756,8 +858,8 @@ export default function App() {
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition">Earthmovers & Heavy Plant</h3>
-                  <p className="text-gray-400 text-xs mb-4">Hydraulic cranes, heavy dump trucks, tracked excavators, HOWO tippers, and CASE 570 backhoes.</p>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition">Earthmovers & Fleet</h3>
+                  <p className="text-gray-400 text-xs mb-4">Hydraulic cranes, dump trucks, tracked excavators, HOWO tippers, and backhoes.</p>
                   <span className="text-amber-400 font-semibold text-xs flex items-center gap-1">View Machinery →</span>
                 </div>
               </div>
@@ -780,8 +882,31 @@ export default function App() {
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition">Borehole Drilling</h3>
-                  <p className="text-gray-400 text-xs mb-4">Siting, deep rotary drilling, casing, yield capacity testing, and solar submersible pump setups.</p>
+                  <p className="text-gray-400 text-xs mb-4">Siting, deep rotary drilling, casing, yield testing, and solar submersible pumps.</p>
                   <span className="text-cyan-400 font-semibold text-xs flex items-center gap-1">View Water Rigs →</span>
+                </div>
+              </div>
+
+              {/* Systems Development Card */}
+              <div 
+                onClick={() => setActiveTab('systems')}
+                className="bg-slate-900 border border-slate-800 hover:border-purple-500/50 rounded-2xl overflow-hidden shadow-xl transition duration-300 cursor-pointer group"
+              >
+                <div className="h-44 overflow-hidden relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" 
+                    alt="Systems Development" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                  <span className="absolute bottom-3 left-4 bg-purple-600 text-white text-xs font-bold px-2.5 py-1 rounded">
+                    Digital Engineering
+                  </span>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition">Systems Development</h3>
+                  <p className="text-gray-400 text-xs mb-4">Enterprise web apps, cross-platform mobile apps, cloud databases, and custom ERPs.</p>
+                  <span className="text-purple-400 font-semibold text-xs flex items-center gap-1">View Software Services →</span>
                 </div>
               </div>
 
@@ -803,7 +928,7 @@ export default function App() {
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition">Hardware Supplies</h3>
-                  <p className="text-gray-400 text-xs mb-4">Solar panels, lithium batteries, timber trusses, IBR roofing sheets, and ceiling drywall kits.</p>
+                  <p className="text-gray-400 text-xs mb-4">Solar panels, lithium batteries, timber trusses, IBR roofing sheets, and drywall kits.</p>
                   <span className="text-sky-400 font-semibold text-xs flex items-center gap-1">View Hardware →</span>
                 </div>
               </div>
@@ -817,7 +942,7 @@ export default function App() {
                   Our Engineering Advantage
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Why Choose Joetom Engineers?</h3>
-                <p className="text-sm text-gray-400 mt-2">We combine heavy-duty machinery, technical engineering expertise, and direct material supply to lower project costs.</p>
+                <p className="text-sm text-gray-400 mt-2">We combine heavy-duty machinery, software engineering expertise, and direct material supply to lower project costs.</p>
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -830,11 +955,11 @@ export default function App() {
                 </div>
 
                 <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl">
-                  <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/30">
-                    <FaHardHat />
+                  <div className="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-4 border border-purple-500/30">
+                    <FaCode />
                   </div>
-                  <h4 className="font-bold text-white text-lg mb-2">Certified Engineers</h4>
-                  <p className="text-xs text-gray-400 leading-relaxed">Licensed civil engineers and hydrogeologists ensuring strict structural standards and site safety.</p>
+                  <h4 className="font-bold text-white text-lg mb-2">Custom Digital Solutions</h4>
+                  <p className="text-xs text-gray-400 leading-relaxed">Full-stack software engineering, enterprise ERP applications, and mobile API development.</p>
                 </div>
 
                 <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-2xl">
@@ -864,7 +989,7 @@ export default function App() {
                   </span>
                   <h3 className="text-2xl sm:text-4xl font-black text-white mt-4 mb-4">Request a Project Quotation</h3>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                    Tell us what you need—whether it’s heavy equipment hire, borehole drilling, civil construction, or structural hardware supplies.
+                    Tell us what you need—whether it’s heavy equipment hire, borehole drilling, systems development, civil construction, or structural hardware supplies.
                   </p>
                   <div className="flex items-center gap-3 text-sky-300 font-semibold text-sm">
                     <FaPhoneAlt /> Immediate Call Assistance: 077 615 6749
@@ -895,6 +1020,7 @@ export default function App() {
                         <option value="Construction and Civil works">Construction and Civil works</option>
                         <option value="Earthmovers & Heavy Plant Hire">Earthmovers & Plant Hire</option>
                         <option value="Borehole Drilling & Solar Pumps">Borehole Drilling & Water Systems</option>
+                        <option value="Systems & Software Development">Systems & Software Development</option>
                         <option value="Hardware & Structural Supplies">Hardware & Bulk Materials</option>
                       </select>
                     </div>
@@ -903,7 +1029,7 @@ export default function App() {
                       <label className="block text-xs font-semibold text-gray-300 mb-1">Project Details / Scope</label>
                       <textarea 
                         rows="3" 
-                        placeholder="Provide details like site location or project scope..." 
+                        placeholder="Provide details like site location or software requirements..." 
                         value={quoteForm.details}
                         onChange={(e) => setQuoteForm({...quoteForm, details: e.target.value})}
                         className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500"
@@ -1584,6 +1710,227 @@ export default function App() {
           </div>
         )}
 
+        {/* ==================== SYSTEM DEVELOPMENT TAB ==================== */}
+        {activeTab === 'systems' && (
+          <div className="space-y-16">
+            
+            {/* Header */}
+            <div className="border-b border-gray-800 pb-4">
+              <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
+                <FaCode className="text-purple-400" /> Systems & Digital Engineering Division
+              </h2>
+              <p className="text-gray-400 mt-1">Full-stack software engineering, cross-platform mobile app creation, database architecture, and custom ERP systems.</p>
+            </div>
+
+            {/* Systems Services Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {systemServices.map((service, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-slate-900 border border-slate-800 hover:border-purple-500/40 rounded-2xl overflow-hidden shadow-xl transition flex flex-col justify-between group"
+                >
+                  <div>
+                    {/* Card Image Header */}
+                    <div className="h-48 overflow-hidden relative">
+                      <img 
+                        src={service.img} 
+                        alt={service.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent"></div>
+                      
+                      {/* Icon Badge */}
+                      <div className="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-purple-600/90 text-white flex items-center justify-center text-lg shadow-md backdrop-blur-sm">
+                        {service.icon}
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-6">
+                      <h3 className="font-bold text-lg text-white mb-2 group-hover:text-purple-400 transition">{service.title}</h3>
+                      <p className="text-xs text-gray-400 leading-relaxed">{service.desc}</p>
+                    </div>
+                  </div>
+
+                  {/* Contact Buttons */}
+                  <div className="p-6 pt-0 flex flex-col gap-2">
+                    <a 
+                      href="https://wa.me/" 
+                      className="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 shadow transition"
+                    >
+                      <FaWhatsapp className="text-base" /> Inquire Software Solution
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Systems Engineering Workflow Timeline */}
+            <section className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <span className="bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-400/30 uppercase tracking-widest">
+                  Software Lifecycle
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Our Systems Development Process</h3>
+                <p className="text-sm text-gray-400 mt-2">How Joetom software engineers build scalable, enterprise-grade digital solutions.</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+                {systemWorkflow.map((wf, idx) => (
+                  <div key={idx} className="bg-slate-950 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between relative group hover:border-purple-500/50 transition">
+                    <div>
+                      <span className="w-8 h-8 rounded-full bg-purple-600 text-white font-extrabold flex items-center justify-center text-sm mb-3">{wf.step}</span>
+                      <h4 className="font-bold text-white text-base mb-2">{wf.title}</h4>
+                      <p className="text-xs text-gray-400 leading-relaxed">{wf.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Interactive Systems Project Scope Estimator */}
+            <section className="bg-gradient-to-r from-purple-950 via-slate-900 to-blue-950 border border-purple-500/40 rounded-3xl p-8 sm:p-12 shadow-2xl">
+              <div className="grid md:grid-cols-12 gap-8 items-center">
+                <div className="md:col-span-5">
+                  <span className="bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-400/30 uppercase tracking-widest">
+                    Software Consultation
+                  </span>
+                  <h3 className="text-2xl sm:text-4xl font-black text-white mt-4 mb-4">Request a System Development Plan</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                    Tell us about your system requirements, target deployment platform, and scale to get a tailored software architecture proposal.
+                  </p>
+                  <div className="flex items-center gap-3 text-purple-300 font-semibold text-sm">
+                    <FaLaptopCode className="text-lg" /> Direct WhatsApp Developer Consultation
+                  </div>
+                </div>
+
+                <div className="md:col-span-7 bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl">
+                  <form onSubmit={handleSoftwareOrderSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">System Type</label>
+                      <select 
+                        value={softwareEstimator.type}
+                        onChange={(e) => setSoftwareEstimator({...softwareEstimator, type: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500"
+                      >
+                        <option value="Custom Enterprise Web Application">Custom Enterprise Web Application</option>
+                        <option value="Cross-Platform Mobile App (iOS & Android)">Cross-Platform Mobile App (iOS & Android)</option>
+                        <option value="Custom ERP / Inventory Management System">Custom ERP / Inventory Management System</option>
+                        <option value="RESTful API Gateway & Backend Database">RESTful API Gateway & Backend Database</option>
+                        <option value="Cloud Migration & Maintenance">Cloud Migration & System Maintenance</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Target Platform & Tech Stack Preference</label>
+                      <select 
+                        value={softwareEstimator.platform}
+                        onChange={(e) => setSoftwareEstimator({...softwareEstimator, platform: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500"
+                      >
+                        <option value="Web (React / Tailwind CSS)">Web Platform (React / Tailwind CSS)</option>
+                        <option value="Full-Stack (React, Node.js & Database)">Full-Stack (React, Node.js & Cloud Database)</option>
+                        <option value="Mobile App (React Native)">Mobile App (React Native Cross-Platform)</option>
+                        <option value="Python / Django Backend System">Python / Django Enterprise Backend</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Key Features / Specific Needs</label>
+                      <textarea 
+                        rows="3" 
+                        placeholder="e.g. User login, payment gateway, WhatsApp notification integration, inventory tracking..." 
+                        value={softwareEstimator.notes}
+                        onChange={(e) => setSoftwareEstimator({...softwareEstimator, notes: e.target.value})}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500"
+                      ></textarea>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm"
+                    >
+                      <FaWhatsapp className="text-lg" /> Send Software Specifications via WhatsApp
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </section>
+
+            {/* Software Engineering Standards Badges */}
+            <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-purple-500/30 rounded-3xl p-8 sm:p-10 shadow-2xl">
+              <div className="text-center max-w-xl mx-auto mb-8">
+                <span className="bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-400/30 uppercase tracking-widest">
+                  Enterprise Grade
+                </span>
+                <h3 className="text-2xl font-black text-white mt-3">Software Quality & Security Guarantee</h3>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaShieldAlt className="text-2xl text-purple-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Encrypted Security</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">JWT authentication, HTTPS encryption, and secure API gateways.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaServer className="text-2xl text-sky-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Cloud Scalability</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">High-availability hosting with automated database backup routines.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaLaptopCode className="text-2xl text-emerald-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Clean Modular Code</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Maintainable codebases engineered for fast performance and scaling.</p>
+                </div>
+
+                <div className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                  <FaClock className="text-2xl text-amber-400 mb-3" />
+                  <h5 className="font-bold text-white text-base mb-1">Continuous Integration</h5>
+                  <p className="text-xs text-gray-400 leading-relaxed">Automated GitHub deployment pipelines for zero downtime software releases.</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Systems Development FAQs Accordion */}
+            <section className="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-400/30 uppercase tracking-widest">
+                  Software Engineering Guide
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Systems Development FAQs</h3>
+              </div>
+
+              <div className="max-w-3xl mx-auto space-y-4">
+                {systemFaqs.map((faq, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-md transition"
+                  >
+                    <button
+                      onClick={() => setOpenSoftwareFaq(openSoftwareFaq === idx ? null : idx)}
+                      className="w-full p-5 text-left font-bold text-white flex justify-between items-center hover:text-purple-400 transition"
+                    >
+                      <span className="flex items-center gap-3">
+                        <FaQuestionCircle className="text-purple-400 text-lg flex-shrink-0" />
+                        {faq.q}
+                      </span>
+                      {openSoftwareFaq === idx ? <FaChevronUp className="text-purple-400" /> : <FaChevronDown className="text-gray-400" />}
+                    </button>
+                    {openSoftwareFaq === idx && (
+                      <div className="px-5 pb-5 pt-0 text-xs sm:text-sm text-gray-300 border-t border-slate-800/80 mt-2 pt-3 leading-relaxed">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+
+          </div>
+        )}
+
         {/* ==================== HARDWARE TAB ==================== */}
         {activeTab === 'hardware' && (
           <div className="space-y-16">
@@ -1902,7 +2249,7 @@ export default function App() {
       {/* Footer */}
       <footer className="bg-slate-950 border-t border-gray-800 py-8 mt-16">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} Joetom Engineers. Building Excellence, Earthmoving, Borehole Drilling & Supplies.</p>
+          <p>© {new Date().getFullYear()} Joetom Engineers. Building Excellence, Earthmoving, Borehole Drilling, Systems & Supplies.</p>
         </div>
       </footer>
 
