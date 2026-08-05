@@ -325,7 +325,7 @@ export default function App() {
       a: "Our hydrogeologists assess multiple survey points across your plot boundaries to pinpoint the deepest fracture zone, maximizing your chances of hitting a high-yield aquifer before any drilling starts."
     },
     {
-      q: "How deep do Joetom rigs usually drill to reach water?",
+      q: "How deep do Reach Building Solutions rigs usually drill to reach water?",
       a: "Typical borehole depths range between 40 to 100 meters depending on the local water table and granite geology. Our air-rotary rigs are capable of reaching depths well beyond 150 meters."
     },
     {
@@ -390,7 +390,7 @@ export default function App() {
   // System Development FAQs Data
   const systemFaqs = [
     {
-      q: "What tech stack do Joetom software engineers specialize in?",
+      q: "What tech stack do Reach Building Solutions software engineers specialize in?",
       a: "We specialize in modern JavaScript frameworks (React, Node.js, Express), Python/Django backend systems, SQLite/PostgreSQL databases, and mobile cross-platform platforms."
     },
     {
@@ -580,7 +580,7 @@ export default function App() {
       a: "All our monocrystalline Tier-1 solar panels come with a 25-year linear performance warranty. Our LiFePO4 lithium batteries and hybrid smart inverters carry a full 5-year replacement warranty."
     },
     {
-      q: "Can Joetom deliver heavy bulk materials directly to out-of-town project sites?",
+      q: "Can Reach Building Solutions deliver heavy bulk materials directly to out-of-town project sites?",
       a: "Absolutely. Leveraging our fleet of HOWO tippers and heavy haulage trucks, we deliver bulk timber, roofing sheets, cement, and solar hardware directly to your site location nationwide."
     },
     {
@@ -601,10 +601,10 @@ export default function App() {
     },
     {
       q: "Do you provide structural integrity guarantees on new builds?",
-      a: "Absolutely. All Joetom structural builds are executed under strict civil engineering oversight with written warranties covering foundation and load-bearing integrity."
+      a: "Absolutely. All Reach Building Solutions structural builds are executed under strict civil engineering oversight with written warranties covering foundation and load-bearing integrity."
     },
     {
-      q: "Can Joetom supply both the construction machinery and raw materials?",
+      q: "Can Reach Building Solutions supply both the construction machinery and raw materials?",
       a: "Yes! Because we own our fleet of earthmovers and operate a structural hardware division, we provide end-to-end service, reducing your reliance on third-party suppliers."
     }
   ];
@@ -612,28 +612,28 @@ export default function App() {
   // Helper for WhatsApp Home Quote Submission
   const handleQuoteSubmit = (e) => {
     e.preventDefault();
-    const message = `Hello Joetom Engineers, I would like to request a quote.\n\n*Name:* ${quoteForm.name}\n*Service Required:* ${quoteForm.service}\n*Details:* ${quoteForm.details}`;
+    const message = `Hello Reach Building Solutions, I would like to request a quote.\n\n*Name:* ${quoteForm.name}\n*Service Required:* ${quoteForm.service}\n*Details:* ${quoteForm.details}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   // Helper for WhatsApp Construction Estimator Submission
   const handleEstimatorSubmit = (e) => {
     e.preventDefault();
-    const message = `Hello Joetom Engineers, I am requesting a site inspection and quote estimate.\n\n*Project Category:* ${estimator.projectType}\n*Estimated Scope:* ${estimator.scale}\n*Notes:* ${estimator.notes || 'N/A'}`;
+    const message = `Hello Reach Building Solutions, I am requesting a site inspection and quote estimate.\n\n*Project Category:* ${estimator.projectType}\n*Estimated Scope:* ${estimator.scale}\n*Notes:* ${estimator.notes || 'N/A'}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   // Helper for WhatsApp Hardware Order Submission
   const handleHardwareOrderSubmit = (e) => {
     e.preventDefault();
-    const message = `Hello Joetom Hardware Division, I would like to request a price quotation for materials.\n\n*Category:* ${hardwareOrder.category}\n*Product Item:* ${hardwareOrder.item}\n*Estimated Quantity:* ${hardwareOrder.quantity}\n*Notes / Delivery Site:* ${hardwareOrder.notes || 'N/A'}`;
+    const message = `Hello Reach Building Solutions Hardware Division, I would like to request a price quotation for materials.\n\n*Category:* ${hardwareOrder.category}\n*Product Item:* ${hardwareOrder.item}\n*Estimated Quantity:* ${hardwareOrder.quantity}\n*Notes / Delivery Site:* ${hardwareOrder.notes || 'N/A'}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   // Helper for WhatsApp Systems Development Submission
   const handleSoftwareOrderSubmit = (e) => {
     e.preventDefault();
-    const message = `Hello Joetom Systems Development Team, I would like to inquire about software engineering services.\n\n*System Type:* ${softwareEstimator.type}\n*Target Platform:* ${softwareEstimator.platform}\n*Project Specifications:* ${softwareEstimator.notes || 'N/A'}`;
+    const message = `Hello Reach Building Solutions Systems Team, I would like to inquire about software engineering services.\n\n*System Type:* ${softwareEstimator.type}\n*Target Platform:* ${softwareEstimator.platform}\n*Project Specifications:* ${softwareEstimator.notes || 'N/A'}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -645,11 +645,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
           
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('home')}>
-            <div className="bg-white text-blue-950 font-black text-2xl px-3 py-1 rounded-lg shadow-md tracking-wider">
-              JOETOM
+            <div className="bg-white text-blue-950 font-black text-xl px-3 py-1 rounded-lg shadow-md tracking-wider uppercase">
+              REACH
             </div>
             <div>
-              <h1 className="text-xl font-extrabold uppercase tracking-wider leading-none">Joetom Engineers</h1>
+              <h1 className="text-xl font-extrabold uppercase tracking-wider leading-none">Reach Building Solutions</h1>
               <p className="text-xs text-sky-200 italic mt-0.5">Building Excellence & Systems</p>
             </div>
           </div>
@@ -935,13 +935,13 @@ export default function App() {
 
             </section>
 
-            {/* Why Choose Joetom */}
+            {/* Why Choose Reach Building Solutions */}
             <section className="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
               <div className="text-center max-w-2xl mx-auto mb-10">
                 <span className="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-widest">
                   Our Engineering Advantage
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Why Choose Joetom Engineers?</h3>
+                <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Why Choose Reach Building Solutions?</h3>
                 <p className="text-sm text-gray-400 mt-2">We combine heavy-duty machinery, software engineering expertise, and direct material supply to lower project costs.</p>
               </div>
 
@@ -1145,7 +1145,7 @@ export default function App() {
                   End-to-End Execution
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Our Civil Project Workflow</h3>
-                <p className="text-sm text-gray-400 mt-2">How Joetom Engineers takes your project from structural concept to certified completion.</p>
+                <p className="text-sm text-gray-400 mt-2">How Reach Building Solutions takes your project from structural concept to certified completion.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
@@ -1604,7 +1604,7 @@ export default function App() {
                   Technical Step-By-Step
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Our Drilling & Execution Process</h3>
-                <p className="text-sm text-gray-400 mt-2">How Joetom Hydrogeologists & Engineers secure sustainable underground water aquifers.</p>
+                <p className="text-sm text-gray-400 mt-2">How Reach Building Solutions Hydrogeologists & Engineers secure sustainable underground water aquifers.</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -1772,7 +1772,7 @@ export default function App() {
                   Software Lifecycle
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-white mt-3">Our Systems Development Process</h3>
-                <p className="text-sm text-gray-400 mt-2">How Joetom software engineers build scalable, enterprise-grade digital solutions.</p>
+                <p className="text-sm text-gray-400 mt-2">How Reach Building Solutions software engineers build scalable, enterprise-grade digital solutions.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
@@ -2249,7 +2249,7 @@ export default function App() {
       {/* Footer */}
       <footer className="bg-slate-950 border-t border-gray-800 py-8 mt-16">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} Joetom Engineers. Building Excellence, Earthmoving, Borehole Drilling, Systems & Supplies.</p>
+          <p>© {new Date().getFullYear()} Reach Building Solutions. Building Excellence, Earthmoving, Borehole Drilling, Systems & Supplies.</p>
         </div>
       </footer>
 
